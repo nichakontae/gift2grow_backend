@@ -1,0 +1,12 @@
+logLevel: 6
+frontAddress: :3000
+backAddress: :8080
+serverHeader: gift2grow.ivelse.com
+cors:
+  - http://localhost:3000/
+mySqlDsn: root:tZkXNp1FHV6VL6e94m89(gift2grow.ivelse.com:3306)/gift2grow?charset=utf8mb4&parseTime=True&loc=Local
+# เอาไว้เช็คว่าเราจะ migrate หรือไม่
+mySqlMigrate: true
+url: http://localhost:8080/
+productionURL: http://gift2grow.ivelse.com:8080
+path: ./storage
