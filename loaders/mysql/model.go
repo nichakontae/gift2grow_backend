@@ -22,7 +22,6 @@ func assignModel() {
 	DonateHistoriesModel = Gorm.Model(new(model.DonateHistory))
 	EvidenceCampaignImagesModel = Gorm.Model(new(model.EvidenceCampaignImage))
 	NotiObjectsModel = Gorm.Model(new(model.NotiObject))
-	RanksModel = Gorm.Model(new(model.Rank))
 	UserNotisModel = Gorm.Model(new(model.UserNoti))
 	UsersModel = Gorm.Model(new(model.User))
 	WantListsModel = Gorm.Model(new(model.WantList))

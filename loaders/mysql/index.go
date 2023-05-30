@@ -67,7 +67,6 @@ func migrate() error {
 		new(model.WantList),
 		new(model.DonateHistory),
 		new(model.EvidenceCampaignImage),
-		new(model.Rank),
 		new(model.User),
 		new(model.UserNoti),
 		new(model.NotiObject),
