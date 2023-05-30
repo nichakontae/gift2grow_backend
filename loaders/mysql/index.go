@@ -62,15 +62,15 @@ func Init() {
 
 func migrate() error {
 	if err := Gorm.AutoMigrate(
-		new(model.CampaignImage),
 		new(model.Campaign),
+		new(model.CampaignImage),
+		new(model.WantList),
 		new(model.DonateHistory),
 		new(model.EvidenceCampaignImage),
-		new(model.NotiObject),
 		new(model.Rank),
-		new(model.UserNoti),
 		new(model.User),
-		new(model.WantList),
+		new(model.UserNoti),
+		new(model.NotiObject),
 	); err != nil {
 		return err
 	}
