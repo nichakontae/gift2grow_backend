@@ -6,7 +6,7 @@ type config struct {
 	BackendAddress  string `yaml:"backAddress"`
 	ServerHeader    string `yaml:"serverHeader"`
 	Cors            string `yaml:"cors"`
-	MysqlDSN        string `yaml:"mySqlDsn"`
+	MySqlDsn        string `yaml:"mySqlDsn"`
 	MySqlMigrate    bool   `yaml:"mySqlMigrate"`
 	ProductionURL   string `yaml:"productionURL"`
 	Path            string `yaml:"path"`
