@@ -14,6 +14,7 @@ type Campaign struct {
 	CreatedAt             *time.Time               `json:"created_at" gorm:"not null"`
 	UpdatedAt             *time.Time               `json:"updated_at" gorm:"not null"`
 	LetterOfThanks        *string                  `json:"letter_of_thanks"`
+	SchoolName            *string                  `json:"school_name" gorm:"not null"`
 	WantLists             []*WantList              `json:"want_lists" gorm:"foreignKey:CampaignId;references:Id;"`
 	CampaignImages        []*CampaignImage         `json:"campaign_images" gorm:"foreignKey:CampaignId;references:Id;"`
 	EvidenceCampaignImage []*EvidenceCampaignImage `json:"evidence_campaign_image" gorm:"foreignKey:CampaignId;references:Id;"`
