@@ -40,6 +40,7 @@ func GetDonateHistory(c *fiber.Ctx) error {
 			Campaign: &payloads.Campaign{
 				Id:         v.Campaign.Id,
 				Topic:      v.Campaign.Topic,
+				SchoolName: v.Campaign.SchoolName,
 				CoverImage: v.Campaign.CoverImage,
 			},
 			UserId:         v.UserId,
