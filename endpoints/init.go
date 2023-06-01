@@ -7,6 +7,7 @@ import (
 	"gift2grow_backend/endpoints/notification"
 	"gift2grow_backend/endpoints/profile"
 	"gift2grow_backend/endpoints/ranking"
+
 	"github.com/gofiber/fiber/v2"
 )
 
@@ -25,6 +26,9 @@ func Init(router fiber.Router) {
 
 	profileGroup := router.Group("/profile")
 	profileGroup.Get("/hello", profile.Hello)
+	profileGroup.Get("/getDonateHistory", profile.GetDonateHistory)
+	profileGroup.Get("/getProfile", profile.GetProfile)
+	profileGroup.Put("/updateProfile", profile.EditProfile)
 
 	rankGroup := router.Group("/rank")
 	rankGroup.Get("/hello", ranking.Hello)
