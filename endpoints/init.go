@@ -7,6 +7,8 @@ import (
 	"gift2grow_backend/endpoints/notification"
 	"gift2grow_backend/endpoints/profile"
 	"gift2grow_backend/endpoints/ranking"
+	"gift2grow_backend/endpoints/upload"
+
 	"github.com/gofiber/fiber/v2"
 )
 
@@ -15,10 +17,10 @@ func Init(router fiber.Router) {
 	authGroup.Get("/hello", auth.Hello)
 
 	campaignGroup := router.Group("/campaign")
-	campaignGroup.Get("/hello", campaign_detail.Hello)
+	campaignGroup.Get("/completedCampaign", campaign_detail.GetCompletedCam)
 
 	homeGroup := router.Group("/home")
-	homeGroup.Get("/hello", home.Hello)
+	homeGroup.Get("/getAllCampaign", home.GetAllCampaign)
 
 	notiGroup := router.Group("/noti")
 	notiGroup.Get("/hello", notification.Hello)
@@ -28,4 +30,9 @@ func Init(router fiber.Router) {
 
 	rankGroup := router.Group("/rank")
 	rankGroup.Get("/hello", ranking.Hello)
+
+	uploadGroup := router.Group("/upload")
+	uploadGroup.Post("/coverImg", upload.CoverImg)
+	uploadGroup.Post("/campaignImg", upload.CampaignImg)
+	uploadGroup.Post("/evidenceImg", upload.EvidenceImg)
 }
