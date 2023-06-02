@@ -28,7 +28,7 @@ func GetAllCampaign(c *fiber.Ctx) error {
 		coverImage, _ := url.JoinPath(config.C.ProductionURL, *campaigns[i].CoverImage)
 		campaigns[i].CoverImage = &coverImage
 
-		if result := mysql.Gorm.Model(&donateHistory).Where("campaign_id = ?", campaigns[i].Id).Count(&count); result.Error != nil {
+		if result := mysql.Gorm.Model(&donateHistory).Where("id = ?", campaigns[i].Id).Count(&count); result.Error != nil {
 			return &response.GenericError{
 				Message: "Unable to get danate history",
 				Err:     result.Error,
