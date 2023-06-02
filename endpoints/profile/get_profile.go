@@ -18,7 +18,7 @@ func GetProfile(c *fiber.Ctx) error {
 	}
 	var user model.User
 
-	if result := mysql.Gorm.Where("user_id = ?", userId).First(&user); result.Error != nil {
+	if result := mysql.Gorm.Where("id = ?", userId).First(&user); result.Error != nil {
 		return &response.GenericError{
 			Message: "User not found",
 			Err:     nil,

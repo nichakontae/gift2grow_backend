@@ -11,7 +11,7 @@ import (
 func EditProfile(c *fiber.Ctx) error {
 	var user model.User
 
-	userId := c.Locals("userId")
+	userId := c.Query("userId")
 	if userId == "" {
 		return &response.GenericError{
 			Message: "User id not found",
@@ -19,10 +19,10 @@ func EditProfile(c *fiber.Ctx) error {
 		}
 	}
 
-	if result := mysql.Gorm.Where("user_id = ?", userId).First(&user); result.Error != nil {
+	if result := mysql.Gorm.Where("id = ?", userId).First(&user); result.Error != nil {
 		return &response.GenericError{
 			Message: "User not found",
-			Err:     nil,
+			Err:     result.Error,
 		}
 	}
 
