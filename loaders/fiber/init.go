@@ -5,9 +5,10 @@ import (
 	"gift2grow_backend/types/response"
 	"gift2grow_backend/utils/config"
 	"gift2grow_backend/utils/logger"
+	"time"
+
 	"github.com/gofiber/fiber/v2"
 	"github.com/sirupsen/logrus"
-	"time"
 )
 
 var app *fiber.App
@@ -32,6 +33,8 @@ func Init() {
 	apiGroup := app.Group("api")
 
 	endpoints.Init(apiGroup)
+
+	app.Static("/images", "./images")
 
 	app.Use(notfoundHandler)
 
