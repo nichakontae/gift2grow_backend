@@ -35,4 +35,5 @@ func Init(router fiber.Router) {
 	uploadGroup.Post("/coverImg", upload.CoverImg)
 	uploadGroup.Post("/campaignImg", upload.CampaignImg)
 	uploadGroup.Post("/evidenceImg", upload.EvidenceImg)
+	uploadGroup.Post("/profileImg", upload.ProfileImg)
 }

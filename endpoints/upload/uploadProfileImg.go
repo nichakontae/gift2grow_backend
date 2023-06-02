@@ -14,9 +14,9 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
-func CoverImg(c *fiber.Ctx) error {
+func ProfileImg(c *fiber.Ctx) error {
 
-	body := new(payloads.UploadCampaign)
+	body := new(payloads.UploadProfile)
 	if err := c.BodyParser(body); err != nil {
 		return &response.GenericError{
 			Message: "Unable to parse body",
@@ -69,27 +69,9 @@ func CoverImg(c *fiber.Ctx) error {
 
 	fileName := fmt.Sprintf("/images/%s.jpeg", fileSalt)
 
-	// campaignCoverImg := model.Campaign{
-	// 	Id:                    body.CampaignId,
-	// 	CoverImage:            &fileName,
-	// 	Topic:                 nil,
-	// 	Location:              nil,
-	// 	Description:           nil,
-	// 	IsCompleted:           nil,
-	// 	TelContact:            nil,
-	// 	LetterOfThanks:        nil,
-	// 	SchoolName:            nil,
-	// 	WantLists:             nil,
-	// 	CampaignImages:        nil,
-	// 	CompletedAmount:       nil,
-	// 	CreatedAt:             nil,
-	// 	UpdatedAt:             nil,
-	// 	EvidenceCampaignImage: nil,
-	// }
+	var user model.User
 
-	var campaign model.Campaign
-
-	if result := mysql.Gorm.Model(&campaign).Where("id = ?", body.CampaignId).Update("cover_image", &fileName); result.Error != nil {
+	if result := mysql.Gorm.Model(&user).Where("id = ?", body.UserId).Update("profile_image", &fileName); result.Error != nil {
 		return &response.GenericError{
 			Message: "Unable to fetch campaign image",
 			Err:     result.Error,
