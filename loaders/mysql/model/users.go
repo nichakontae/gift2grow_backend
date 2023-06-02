@@ -3,9 +3,9 @@ package model
 import "gift2grow_backend/types/enum"
 
 type User struct {
-	Id            *uint64          `json:"id" gorm:"primaryKey;not null"`
+	Id            *string          `json:"id" gorm:"primaryKey;not null"`
 	Username      *string          `json:"username" gorm:"not null"`
-	ProfileImage  *string          `json:"profile_image" gorm:"not null"`
+	ProfileImage  *string          `json:"profile_image"`
 	FirstName     *string          `json:"first_name" gorm:"not null"`
 	LastName      *string          `json:"last_name" gorm:"not null"`
 	Email         *string          `json:"email" gorm:"not null"`

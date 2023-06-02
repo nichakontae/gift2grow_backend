@@ -6,6 +6,7 @@ type Campaign struct {
 	Id                    *uint64                  `json:"id" gorm:"primaryKey;not null"`
 	CoverImage            *string                  `json:"cover_image" gorm:"not null"`
 	Topic                 *string                  `json:"topic" gorm:"not null"`
+	SchoolName            *string                  `json:"school_name" gorm:"not null"`
 	Location              *string                  `json:"location" gorm:"not null"`
 	Description           *string                  `json:"description" gorm:"not null"`
 	IsCompleted           *bool                    `json:"is_completed" gorm:"not null"`
