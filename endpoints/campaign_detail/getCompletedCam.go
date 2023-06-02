@@ -16,7 +16,7 @@ func GetCompletedCam(c *fiber.Ctx) error {
 
 	campaignId := c.Query("campaignId")
 
-	if result := mysql.Gorm.Preload("EvidenceCampaignImage").Where("campaign_id = ?", campaignId).Find(&campaign); result.Error != nil {
+	if result := mysql.Gorm.Preload("EvidenceCampaignImage").Where("id = ?", campaignId).Find(&campaign); result.Error != nil {
 		return &response.GenericError{
 			Message: "Unable to get all campaign",
 			Err:     result.Error,
