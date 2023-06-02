@@ -38,7 +38,6 @@ func GetDonateHistory(c *fiber.Ctx) error {
 		donate_history_payload[i] = &payloads.DonateHistory{
 			CampaignId: v.CampaignId,
 			Campaign: &payloads.Campaign{
-				Id:         v.Campaign.Id,
 				Topic:      v.Campaign.Topic,
 				SchoolName: v.Campaign.SchoolName,
 				CoverImage: v.Campaign.CoverImage,
