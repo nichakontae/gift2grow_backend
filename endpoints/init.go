@@ -18,7 +18,7 @@ func Init(router fiber.Router) {
 	campaignGroup.Get("/hello", campaign_detail.Hello)
 
 	homeGroup := router.Group("/home")
-	homeGroup.Get("/hello", home.Hello)
+	homeGroup.Get("/getAllCampaign", home.Hello)
 
 	notiGroup := router.Group("/noti")
 	notiGroup.Get("/hello", notification.Hello)
