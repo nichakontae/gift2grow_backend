@@ -22,6 +22,40 @@ jobs:
         go get .
     - name: Build
       run: go build -v ./...
-
-    - name: Test
-      run: go test -v ./...
+      
+  integration-tests:
+    name: Integration tests
+    runs-on: ubuntu-latest
+    services:
+      # Label used to access the service container
+      mysql:
+        # Docker Hub image
+        image: mysql
+        # Provide the password for postgres
+        env:
+          MYSQL_PASSWORD : mysql
+        # Set health checks to wait until postgres has started
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          # Maps tcp port 5432 on service container to the host
+          - 3306:3306
+    steps:
+      - name: "Checkout"
+        uses: actions/checkout@master
+      - uses: actions/setup-go@master
+        with:
+          go-version: "1.19.5"
+      - name: Install sql-migrate
+        run: go get -v github.com/rubenv/sql-migrate/...
+      - name: Apply migrations
+        run: sql-migrate up -env="ci" -config=./migrations/dbconfig-ci.yml
+      - name: "Integration tests"
+        run: go test -race -tags=integration ./...
+        env:
+          TEST_DB_URI: root:tZkXNp1FHV6VL6e94m89@tcp(server1.ivelse.com:3306)/gift2grow?charset=utf8mb4&parseTime=True&loc=Local
+      - name: Rollback migrations
+        run: sql-migrate down -env="ci" -config=./migrations/dbconfig-ci.yml
