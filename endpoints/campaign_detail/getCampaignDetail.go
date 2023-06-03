@@ -32,7 +32,8 @@ func GetCampaignDetail(c *fiber.Ctx) error {
 	coverImage, _ := url.JoinPath(config.C.ProductionURL, *details.CoverImage)
 	var images []string
 	for _, image := range details.CampaignImages {
-		images = append(images, *image.Image)
+		urlImage, _ := url.JoinPath(config.C.ProductionURL, *image.Image)
+		images = append(images, urlImage)
 	} 
 	var lists []string
 	for _, list := range details.WantLists {
