@@ -8,5 +8,5 @@ type CompletedCampaign struct {
 	Description           *string   `json:"description"`
 	IsCompleted           *bool     `json:"isCompleted"`
 	CompletedAmount       *int      `json:"completedAmount"`
-	EvidenceCampaignImage []*string `json:"evidenceImg"`
+	EvidenceCampaignImage []string `json:"evidenceImg"`
 }
