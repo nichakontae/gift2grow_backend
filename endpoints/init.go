@@ -15,8 +15,11 @@ import (
 func Init(router fiber.Router) {
 	authGroup := router.Group("/auth")
 	authGroup.Get("/hello", auth.Hello)
+	authGroup.Post("/register", auth.Register)
 
 	campaignGroup := router.Group("/campaign")
+	campaignGroup.Get("/getCampaignDetail", campaign_detail.GetCampaignDetail)
+	campaignGroup.Post("/postTracking", campaign_detail.PostTracking)
 	campaignGroup.Get("/completedCampaign", campaign_detail.GetCompletedCam)
 
 	homeGroup := router.Group("/home")
