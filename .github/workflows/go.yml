@@ -3,8 +3,8 @@
 name: Build & Test Go
 
 on:
-  pull_request:
-    branches: [ "main" ]
+  push:
+    branches: [ "test-1" ]
 
 jobs:
 
