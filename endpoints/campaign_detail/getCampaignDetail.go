@@ -39,6 +39,8 @@ func GetCampaignDetail(c *fiber.Ctx) error {
 	for _, list := range details.WantLists {
 		lists = append(lists, *list.WantItem)
 	}
+	var date = details.CreatedAt.Format("2006-01-02")
+
 	detailsPayload := payloads.Campaign{
 		CampaignId: details.Id,
 		CoverImage: &coverImage,
@@ -49,7 +51,7 @@ func GetCampaignDetail(c *fiber.Ctx) error {
 		IsCompleted: details.IsCompleted,
 		TelContact: details.TelContact,
 		CompletedAmount: details.CompletedAmount,
-		CreatedAt: details.CreatedAt,
+		CreatedAt: &date,
 		WantLists: lists,
 		CampaignImages: images,
 	}
