@@ -22,16 +22,17 @@ func GetCompletedCam(c *fiber.Ctx) error {
 			Err:     result.Error,
 		}
 	}
-	var EvidenceImgs []*string
+	var EvidenceImgs []string
+	coverImage, _ := url.JoinPath(config.C.ProductionURL, *campaign.CoverImage)
+	// var image string
 	for i := 0; i < len(campaign.EvidenceCampaignImage); i++ {
 		EvidenceCampaignImage, _ := url.JoinPath(config.C.ProductionURL, *campaign.EvidenceCampaignImage[i].Image)
-
-		EvidenceImgs[i] = &EvidenceCampaignImage
+        // image = EvidenceCampaignImage
+		EvidenceImgs = append(EvidenceImgs, EvidenceCampaignImage)
 	}
-
 	completedCampaign := &payloads.CompletedCampaign{
 		CampaignId:            campaign.Id,
-		CoverImage:            campaign.CoverImage,
+		CoverImage:            &coverImage,
 		Topic:                 campaign.Topic,
 		SchoolName:            campaign.SchoolName,
 		Description:           campaign.Description,
