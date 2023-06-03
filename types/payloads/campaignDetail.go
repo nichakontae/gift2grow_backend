@@ -1,6 +1,6 @@
 package payloads
 
-import "time"
+// import "time"
 
 type Campaign struct {
 	CampaignId            *uint64                  `json:"campaignId"`
@@ -12,7 +12,7 @@ type Campaign struct {
 	IsCompleted           *bool                    `json:"is_completed"`
 	TelContact            *string                  `json:"tel_contact"`
 	CompletedAmount       *int                     `json:"completed_amount"`
-	CreatedAt             *time.Time               `json:"created_at" `
+	CreatedAt             *string              `json:"created_at" `
 	WantLists             []string             		`json:"want_lists" `
 	CampaignImages        []string        			`json:"campaign_images"`
 }
