@@ -20,12 +20,11 @@ func Register(c *fiber.Ctx) error {
 
 	rank := enum.LittleDandelion
 	tamboonPoint := 0
-	profileImage := "/images/"
 
 	user := model.User{
 		Id:           registerAccount.UserId,
 		Username:     registerAccount.Username,
-		ProfileImage: &profileImage,
+		ProfileImage: nil,
 		FirstName:    registerAccount.Firstname,
 		LastName:     registerAccount.Lastname,
 		Email:        registerAccount.Email,
