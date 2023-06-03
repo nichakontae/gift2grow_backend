@@ -27,7 +27,7 @@ func GetAllCampaign(c *fiber.Ctx) error {
 		var count int64
 		coverImage, _ := url.JoinPath(config.C.ProductionURL, *campaigns[i].CoverImage)
 		campaigns[i].CoverImage = &coverImage
-		print(campaigns[i].Id)
+		// print(campaigns[i].Id)
 		
 		if result := mysql.Gorm.Model(&donateHistory).Where("campaign_id = ?", campaigns[i].Id).Count(&count); result.Error != nil {
 			return &response.GenericError{
