@@ -34,6 +34,7 @@ func Init(router fiber.Router) {
 	profileGroup.Get("/getDonateHistory", profile.GetDonateHistory)
 	profileGroup.Get("/getProfile", profile.GetProfile)
 	profileGroup.Put("/updateProfile", profile.EditProfile)
+	profileGroup.Get("/getDonateNumber", profile.GetDonateNumber)
 
 	rankGroup := router.Group("/rank")
 	rankGroup.Get("/hello", ranking.Hello)
