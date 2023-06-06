@@ -12,4 +12,6 @@ type AllCampaign struct {
 	CompletedAmount   *int          `json:"completedAmount"`
 	TrackingAmount    *int64          `json:"trackingAmount"`
 	CreatedAt         *time.Time    `json:"createdAt"`
+	Topic             *string       `json:"topic"`
+	Location          *string       `json:"location"`
 }

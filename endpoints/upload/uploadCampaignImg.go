@@ -10,6 +10,7 @@ import (
 	"image"
 	"image/jpeg"
 	"os"
+	_ "image/png"
 
 	"github.com/gofiber/fiber/v2"
 )
@@ -42,6 +43,7 @@ func CampaignImg(c *fiber.Ctx) error {
 		defer fileHeader.Close()
 
 		// * Decode image
+		print(fileHeader);
 		img, _, err := image.Decode(fileHeader)
 		if err != nil {
 			return &response.GenericError{
