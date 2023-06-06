@@ -10,6 +10,7 @@ import (
 	"image"
 	"image/jpeg"
 	"os"
+	_ "image/png"
 
 	"github.com/gofiber/fiber/v2"
 )
