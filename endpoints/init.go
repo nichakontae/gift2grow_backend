@@ -36,6 +36,8 @@ func Init(router fiber.Router) {
 
 	rankGroup := router.Group("/rank")
 	rankGroup.Get("/hello", ranking.Hello)
+	rankGroup.Get("/getAllUsers", ranking.GetAllUsers)
+	rankGroup.Get("/getProfileForShare", ranking.GetProfileForShare)
 
 	uploadGroup := router.Group("/upload")
 	uploadGroup.Post("/coverImg", upload.CoverImg)

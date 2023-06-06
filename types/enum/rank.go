@@ -3,7 +3,7 @@ package enum
 type Rank string
 
 const (
-	BornToBeAngle   Rank = "Born to be Angle"
+	BornToBeAngel   Rank = "Born to be Angel"
 	TraineeAngel    Rank = "Trainee Angel"
 	LittleDandelion Rank = "Little Dandelion"
 )
