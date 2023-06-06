@@ -15,6 +15,7 @@ var RanksModel *gorm.DB
 var UserNotisModel *gorm.DB
 var UsersModel *gorm.DB
 var WantListsModel *gorm.DB
+var UserTokensModel *gorm.DB
 
 func assignModel() {
 	CampaignImagesModel = Gorm.Model(new(model.CampaignImage))
@@ -25,4 +26,5 @@ func assignModel() {
 	UserNotisModel = Gorm.Model(new(model.UserNoti))
 	UsersModel = Gorm.Model(new(model.User))
 	WantListsModel = Gorm.Model(new(model.WantList))
+	UserTokensModel = Gorm.Model(new(model.UserToken))
 }
