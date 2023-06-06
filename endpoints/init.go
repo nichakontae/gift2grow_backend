@@ -21,6 +21,7 @@ func Init(router fiber.Router) {
 	campaignGroup.Get("/getCampaignDetail", campaign_detail.GetCampaignDetail)
 	campaignGroup.Post("/postTracking", campaign_detail.PostTracking)
 	campaignGroup.Get("/completedCampaign", campaign_detail.GetCompletedCam)
+	campaignGroup.Put("/putTamboon",campaign_detail.PutTamboon)
 
 	homeGroup := router.Group("/home")
 	homeGroup.Get("/getAllCampaign", home.GetAllCampaign)
