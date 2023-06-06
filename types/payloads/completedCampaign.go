@@ -9,4 +9,5 @@ type CompletedCampaign struct {
 	IsCompleted           *bool     `json:"isCompleted"`
 	CompletedAmount       *int      `json:"completedAmount"`
 	EvidenceCampaignImage []string `json:"evidenceImg"`
+	LetterOfThanks        *string   `json:"letterThank"`
 }
