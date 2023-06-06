@@ -13,4 +13,5 @@ type User struct {
 	TamboonPoint  *int             `json:"tamboon_point" gorm:"not null"`
 	DonateHistory []*DonateHistory `json:"donate_history" gorm:"foreignKey:UserId;references:Id;"`
 	UserNoti      []*UserNoti      `json:"user_noti" gorm:"foreignKey:UserId;references:Id;"`
+	UserToken     []*UserToken     `json:"user_token" gorm:"foreignKey:UserId;references:Id;"`
 }

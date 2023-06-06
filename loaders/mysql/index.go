@@ -70,6 +70,7 @@ func migrate() error {
 		new(model.User),
 		new(model.UserNoti),
 		new(model.NotiObject),
+		new(model.UserToken),
 	); err != nil {
 		return err
 	}
