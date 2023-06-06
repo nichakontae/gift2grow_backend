@@ -9,3 +9,8 @@ type PostNoti struct {
 	CampaignId *uint64  `json:"campaignId"`
 	UserIds    []string `json:"userIds"`
 }
+
+type PostUserToken struct {
+	UserId *string `json:"userId"`
+	Token  *string `json:"token"`
+}

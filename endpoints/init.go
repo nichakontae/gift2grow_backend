@@ -21,7 +21,7 @@ func Init(router fiber.Router) {
 	campaignGroup.Get("/getCampaignDetail", campaign_detail.GetCampaignDetail)
 	campaignGroup.Post("/postTracking", campaign_detail.PostTracking)
 	campaignGroup.Get("/completedCampaign", campaign_detail.GetCompletedCam)
-	campaignGroup.Put("/putTamboon",campaign_detail.PutTamboon)
+	campaignGroup.Put("/putTamboon", campaign_detail.PutTamboon)
 
 	homeGroup := router.Group("/home")
 	homeGroup.Get("/getAllCampaign", home.GetAllCampaign)
@@ -31,6 +31,8 @@ func Init(router fiber.Router) {
 	notiGroup.Get("/getUserNoti", notification.GetUserNoti)
 	notiGroup.Post("/postUserNoti", notification.PostUserNoti)
 	notiGroup.Put("/editUserNoti", notification.EditUserNoti)
+	notiGroup.Get("/getUserToken", notification.GetUserToken)
+	notiGroup.Post("/postUserToken", notification.PostUserToken)
 
 	profileGroup := router.Group("/profile")
 	profileGroup.Get("/hello", profile.Hello)
