@@ -9,6 +9,7 @@ import (
 	"gift2grow_backend/utils/text"
 	"image"
 	"image/jpeg"
+	_ "image/png"
 	"os"
 
 	"github.com/gofiber/fiber/v2"

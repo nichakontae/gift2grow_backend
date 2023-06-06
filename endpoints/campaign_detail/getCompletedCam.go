@@ -39,6 +39,7 @@ func GetCompletedCam(c *fiber.Ctx) error {
 		IsCompleted:           campaign.IsCompleted,
 		CompletedAmount:       campaign.CompletedAmount,
 		EvidenceCampaignImage: EvidenceImgs,
+		LetterOfThanks:        campaign.LetterOfThanks,
 	}
 
 	return c.JSON(completedCampaign)

@@ -21,6 +21,7 @@ func Init(router fiber.Router) {
 	campaignGroup.Get("/getCampaignDetail", campaign_detail.GetCampaignDetail)
 	campaignGroup.Post("/postTracking", campaign_detail.PostTracking)
 	campaignGroup.Get("/completedCampaign", campaign_detail.GetCompletedCam)
+	campaignGroup.Put("/putTamboon",campaign_detail.PutTamboon)
 
 	homeGroup := router.Group("/home")
 	homeGroup.Get("/getAllCampaign", home.GetAllCampaign)
@@ -36,9 +37,12 @@ func Init(router fiber.Router) {
 	profileGroup.Get("/getDonateHistory", profile.GetDonateHistory)
 	profileGroup.Get("/getProfile", profile.GetProfile)
 	profileGroup.Put("/updateProfile", profile.EditProfile)
+	profileGroup.Get("/getDonateNumber", profile.GetDonateNumber)
 
 	rankGroup := router.Group("/rank")
 	rankGroup.Get("/hello", ranking.Hello)
+	rankGroup.Get("/getAllUsers", ranking.GetAllUsers)
+	rankGroup.Get("/getProfileForShare", ranking.GetProfileForShare)
 
 	uploadGroup := router.Group("/upload")
 	uploadGroup.Post("/coverImg", upload.CoverImg)
