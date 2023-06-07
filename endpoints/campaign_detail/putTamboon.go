@@ -29,6 +29,12 @@ func PutTamboon(c *fiber.Ctx) error{
 
 	*user.TamboonPoint = *user.TamboonPoint + 50;
 
+	if *user.TamboonPoint > 100 && *user.TamboonPoint <= 250 {
+		*user.Rank = "Trainee Angel";
+	}else if (*user.TamboonPoint > 250){
+		*user.Rank = "Born to be Angle";
+	}
+
 	if result := mysql.Gorm.Save(&user); result.Error != nil {
 		return &response.GenericError{
 			Message: "Unable to update user",
