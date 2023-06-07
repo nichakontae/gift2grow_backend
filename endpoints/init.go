@@ -33,6 +33,7 @@ func Init(router fiber.Router) {
 	notiGroup.Put("/editUserNoti", notification.EditUserNoti)
 	notiGroup.Get("/getUserToken", notification.GetUserToken)
 	notiGroup.Post("/postUserToken", notification.PostUserToken)
+	notiGroup.Get("/getUserCampaign", notification.GetUserCampaign)
 
 	profileGroup := router.Group("/profile")
 	profileGroup.Get("/hello", profile.Hello)

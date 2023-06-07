@@ -20,7 +20,7 @@ func GetUserNoti(c *fiber.Ctx) error {
 
 	var userNoti []model.UserNoti
 
-	if result := mysql.Gorm.Preload("User").Preload("NotiObject").Where("user_id = ?", userId).Find(&userNoti); result.Error != nil {
+	if result := mysql.Gorm.Preload("User").Preload("NotiObject").Preload("NotiObject.Campaign").Where("user_id = ?", userId).Find(&userNoti); result.Error != nil {
 		return &response.GenericError{
 			Message: "Error when query user noti",
 			Err:     result.Error,
