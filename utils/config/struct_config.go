@@ -10,4 +10,5 @@ type config struct {
 	MySqlMigrate    bool     `yaml:"mySqlMigrate"`
 	ProductionURL   string   `yaml:"productionURL"`
 	Path            string   `yaml:"path"`
+	JwtSecret       string   `yaml:"jwtSecret"`
 }
