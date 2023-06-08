@@ -6,6 +6,7 @@ import (
 	"gift2grow_backend/types/enum"
 	"gift2grow_backend/types/payloads"
 	"gift2grow_backend/types/response"
+	"gift2grow_backend/utils/config"
 	"github.com/gofiber/fiber/v2"
 )
 
@@ -39,6 +40,6 @@ func Register(c *fiber.Ctx) error {
 	}
 	return c.JSON(&response.InfoResponse{
 		Success: true,
-		Message: "Created an account already",
+		Data:    config.C.JwtSecret,
 	})
 }
