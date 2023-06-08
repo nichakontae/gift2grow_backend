@@ -40,7 +40,7 @@ func GetAllUsers(c *fiber.Ctx) error {
 		}, nil
 	})
 
-	return c.JSON(data)
+	return c.JSON(response.NewResponse(data))
 }
 
 
