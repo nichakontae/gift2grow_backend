@@ -21,6 +21,15 @@ func PostTracking(c *fiber.Ctx) error {
         }
     }
 
+	var donate_history []model.DonateHistory
+
+	if result := mysql.Gorm.Where("campaign_id = ?", body.CampaignId).Find(&donate_history); result.Error != nil {
+		return &response.GenericError{
+			Message: "campaign not found",
+			Err:     nil,
+		}
+	}
+
 	user := &model.User{}
 	if result := mysql.Gorm.First(user, body.UserId); result.Error != nil {
 		return &response.GenericError{
@@ -34,6 +43,17 @@ func PostTracking(c *fiber.Ctx) error {
 		return &response.GenericError{
 			Message: "Unable to find campaign",
 			Err:     result.Error,
+		}
+	}
+
+	if *campaign.CompletedAmount == len(donate_history) + 1 {
+		*campaign.IsCompleted = true
+
+		if result := mysql.Gorm.Save(&campaign); result.Error != nil {
+			return &response.GenericError{
+				Message: "Unable to update campaign",
+				Err:     result.Error,
+			}
 		}
 	}
 
