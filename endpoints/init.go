@@ -58,4 +58,5 @@ func Init(router fiber.Router) {
 
 	adminGroup := router.Group("/admin")
 	adminGroup.Post("/postCampaign", admin.PostCampaign)
+	adminGroup.Put("/editCampaign", admin.EditCampaigns)
 }

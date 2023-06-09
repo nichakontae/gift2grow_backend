@@ -14,9 +14,10 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
-func PostCampaign(c *fiber.Ctx) error {
+func EditCampaigns(c *fiber.Ctx) error {
 
-	// Parse the request body into a payloads.Campaign object
+	var campaign model.Campaign
+
 	body := new(payloads.Campaign)
 	if err := c.BodyParser(body); err != nil {
 		return &response.GenericError{
@@ -68,24 +69,10 @@ func PostCampaign(c *fiber.Ctx) error {
 	}
 
 	fileName := fmt.Sprintf("/images/%s.jpeg", fileSalt)
-	IsCompleted := false
 
-	// Create a new Campaign object with the parsed data from the request body
-	campaign := model.Campaign{
-		CoverImage:      &fileName,
-		Topic:           body.Topic,
-		SchoolName:      body.SchoolName,
-		Location:        body.Location,
-		Description:     body.Description,
-		IsCompleted:     &IsCompleted,
-		TelContact:      body.TelContact,
-		CompletedAmount: body.CompletedAmount,
-	}
-
-	// Save the campaign to the database
-	if result := mysql.Gorm.Create(&campaign); result.Error != nil {
+	if result := mysql.Gorm.Where("id = ?", body.CampaignId).First(&campaign); result.Error != nil {
 		return &response.GenericError{
-			Message: "Unable to create campaign",
+			Message: "Campaign not found",
 			Err:     result.Error,
 		}
 	}
@@ -103,10 +90,17 @@ func PostCampaign(c *fiber.Ctx) error {
 	wantedList := list.Value["wantLists"]
 	var wantLists []*model.WantList
 
+	if result := mysql.Gorm.Where("campaign_id = ?", body.CampaignId).Delete(&model.WantList{}); result.Error != nil {
+		return &response.GenericError{
+			Message: "cannot delete want list",
+			Err:     result.Error,
+		}
+	}
+
 	// Create and save each want list item to the database
 	for _, item := range wantedList {
 		wantList := &model.WantList{
-			CampaignId: campaign.Id,
+			CampaignId: body.CampaignId,
 			WantItem:   &item, // Assign the address of 'item' to 'WantItem'
 		}
 		if result := mysql.Gorm.Create(wantList); result.Error != nil {
@@ -118,10 +112,13 @@ func PostCampaign(c *fiber.Ctx) error {
 		wantLists = append(wantLists, wantList)
 	}
 
-	// Update the campaign object with the wantLists
-	campaign.WantLists = wantLists
+	if result := mysql.Gorm.Where("campaign_id = ?", body.CampaignId).Delete(&model.CampaignImage{}); result.Error != nil {
+		return &response.GenericError{
+			Message: "cannot delete campaign image",
+			Err:     result.Error,
+		}
+	}
 
-	//campaignImages
 	form, err := c.MultipartForm()
 	if err != nil {
 		return &response.GenericError{
@@ -185,9 +182,16 @@ func PostCampaign(c *fiber.Ctx) error {
 		campaignImages = append(campaignImages, campaignImage)
 	}
 
-	// Update the campaign object with campaignImages
-	campaign.CampaignImages = campaignImages
+	// Update the campaign object with the wantLists and cover image
+	campaign.WantLists = wantLists
+	campaign.CoverImage = &fileName
 
-	// Return the campaign as a JSON response
+	if result := mysql.Gorm.Save(&campaign); result.Error != nil {
+		return &response.GenericError{
+			Message: "Error saving campaign",
+			Err:     result.Error,
+		}
+	}
+
 	return c.JSON(campaign)
 }
