@@ -185,6 +185,7 @@ func EditCampaigns(c *fiber.Ctx) error {
 	// Update the campaign object with the wantLists and cover image
 	campaign.WantLists = wantLists
 	campaign.CoverImage = &fileName
+	campaign.CampaignImages = campaignImages
 
 	if result := mysql.Gorm.Save(&campaign); result.Error != nil {
 		return &response.GenericError{
