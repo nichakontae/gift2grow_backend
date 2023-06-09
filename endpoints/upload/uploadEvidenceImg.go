@@ -1,16 +1,19 @@
 package upload
 
 import (
-	"gift2grow_backend/loaders/mysql/model"
 	"fmt"
+	"gift2grow_backend/endpoints/notification"
 	"gift2grow_backend/loaders/mysql"
+	"gift2grow_backend/loaders/mysql/model"
 	"gift2grow_backend/types/payloads"
 	"gift2grow_backend/types/response"
+	"gift2grow_backend/utils/config"
 	"gift2grow_backend/utils/text"
 	"image"
 	"image/jpeg"
 	_ "image/png"
 	"os"
+	"strconv"
 
 	"github.com/gofiber/fiber/v2"
 )
@@ -74,10 +77,10 @@ func EvidenceImg(c *fiber.Ctx) error {
 		fileName := fmt.Sprintf("/images/%s.jpeg", fileSalt)
 		// * Update user record
 		evidenceImage := &model.EvidenceCampaignImage{
-			CampaignId:  body.CampaignId,
-			Campaign:    nil,
-			Image:       &fileName,
-			UpdatedAt:   nil,
+			CampaignId: body.CampaignId,
+			Campaign:   nil,
+			Image:      &fileName,
+			UpdatedAt:  nil,
 		}
 		if result := mysql.Gorm.Create(evidenceImage); result.Error != nil {
 			return &response.GenericError{
@@ -87,7 +90,7 @@ func EvidenceImg(c *fiber.Ctx) error {
 		}
 	}
 
-	var campaign model.Campaign 
+	var campaign model.Campaign
 
 	if result := mysql.Gorm.Model(&campaign).Where("id = ?", body.CampaignId).Update("letter_of_thanks", body.LetterOfThanks); result.Error != nil {
 		return &response.GenericError{
@@ -95,8 +98,11 @@ func EvidenceImg(c *fiber.Ctx) error {
 			Err:     result.Error,
 		}
 	}
+	c.Request().Header.Set("Content-Type", "application/json")
+	c.Request().Header.Set("Authorization", config.C.AuthKey)
 
-	
+	campaignIDString := strconv.FormatUint(*body.CampaignId, 10)
+	notification.NotifyUser(campaignIDString)
 
 	return c.JSON(&response.InfoResponse{
 		Success: true,

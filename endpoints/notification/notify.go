@@ -11,11 +11,13 @@ import (
 
 	firebase "firebase.google.com/go"
 	"firebase.google.com/go/messaging"
-	"github.com/gofiber/fiber/v2"
 	"google.golang.org/api/option"
 )
 
-func NotifyUser(c *fiber.Ctx) error {
+func NotifyUser(campaignId string) error {
+
+	// c.Request().Header.Set("Content-Type", "application/json")
+	// c.Request().Header.Set("Authorization", config.C.AuthKey)
 
 	//initialize firebase app
 	opt := option.WithCredentialsFile("serviceAccountKey.json")
@@ -30,13 +32,13 @@ func NotifyUser(c *fiber.Ctx) error {
 		log.Fatal(err)
 	}
 
-	campaignId := c.Query("campaignId")
-	if campaignId == "" {
-		return &response.GenericError{
-			Message: "campaignId is required",
-			Err:     nil,
-		}
-	}
+	// campaignId := c.Query("campaignId")
+	// if campaignId == "" {
+	// 	return &response.GenericError{
+	// 		Message: "campaignId is required",
+	// 		Err:     nil,
+	// 	}
+	// }
 
 	//get userIds
 	var userCampaign []model.DonateHistory
@@ -151,6 +153,6 @@ func NotifyUser(c *fiber.Ctx) error {
 		fmt.Println("Successfully sent message:", response)
 	}
 
-	return c.JSON("success")
+	return nil
 
 }

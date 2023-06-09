@@ -11,4 +11,5 @@ type config struct {
 	ProductionURL   string   `yaml:"productionURL"`
 	Path            string   `yaml:"path"`
 	JwtSecret       string   `yaml:"jwtSecret"`
+	AuthKey         string   `yaml:"authKey"`
 }
