@@ -75,8 +75,10 @@ func NotifyUser(campaignId string) error {
 		}
 	}
 
+	var desc = "Evidence updated!"
 	NotiObject := &model.NotiObject{
 		CampaignId: &campaignID,
+		Desc:       &desc,
 		UserNoti:   []*model.UserNoti{},
 	}
 
