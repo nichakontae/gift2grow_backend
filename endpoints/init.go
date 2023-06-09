@@ -1,6 +1,7 @@
 package endpoints
 
 import (
+	"gift2grow_backend/endpoints/admin"
 	"gift2grow_backend/endpoints/auth"
 	"gift2grow_backend/endpoints/campaign_detail"
 	"gift2grow_backend/endpoints/home"
@@ -54,4 +55,8 @@ func Init(router fiber.Router) {
 	uploadGroup.Post("/campaignImg", upload.CampaignImg)
 	uploadGroup.Post("/evidenceImg", upload.EvidenceImg)
 	uploadGroup.Post("/profileImg", upload.ProfileImg)
+
+	adminGroup := router.Group("/admin")
+	adminGroup.Post("/postCampaign", admin.PostCampaign)
+	adminGroup.Put("/editCampaign", admin.EditCampaigns)
 }
