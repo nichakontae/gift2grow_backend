@@ -21,7 +21,7 @@ func EvidenceImg(c *fiber.Ctx) error {
 	//claims := token.Claims.(*common.UserClaim)
 
 	// * Parse body
-	body := new(payloads.UploadCampaign)
+	body := new(payloads.UploadCampaignEvidenceThank)
 	if err := c.BodyParser(body); err != nil {
 		return &response.GenericError{
 			Message: "Unable to parse body",
@@ -86,6 +86,17 @@ func EvidenceImg(c *fiber.Ctx) error {
 			}
 		}
 	}
+
+	var campaign model.Campaign 
+
+	if result := mysql.Gorm.Model(&campaign).Where("id = ?", body.CampaignId).Update("letter_of_thanks", body.LetterOfThanks); result.Error != nil {
+		return &response.GenericError{
+			Message: "Unable to fetch campaign image",
+			Err:     result.Error,
+		}
+	}
+
+	
 
 	return c.JSON(&response.InfoResponse{
 		Success: true,
