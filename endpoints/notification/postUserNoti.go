@@ -40,9 +40,10 @@ func PostUserNoti(c *fiber.Ctx) error {
 			}
 		}
 	}
-
+	var desc = "Campaign completed!"
 	NotiObject := &model.NotiObject{
 		CampaignId: body.CampaignId,
+		Desc:       &desc,
 		UserNoti:   []*model.UserNoti{},
 	}
 
