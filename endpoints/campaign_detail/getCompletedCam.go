@@ -30,6 +30,7 @@ func GetCompletedCam(c *fiber.Ctx) error {
         // image = EvidenceCampaignImage
 		EvidenceImgs = append(EvidenceImgs, EvidenceCampaignImage)
 	}
+	
 	completedCampaign := &payloads.CompletedCampaign{
 		CampaignId:            campaign.Id,
 		CoverImage:            &coverImage,
@@ -40,6 +41,7 @@ func GetCompletedCam(c *fiber.Ctx) error {
 		CompletedAmount:       campaign.CompletedAmount,
 		EvidenceCampaignImage: EvidenceImgs,
 		LetterOfThanks:        campaign.LetterOfThanks,
+		CompletedDate:         campaign.CompletedAt,
 	}
 
 	return c.JSON(completedCampaign)

@@ -46,6 +46,7 @@ func GetAllCampaign(c *fiber.Ctx) error {
 			CreatedAt:       campaigns[i].CreatedAt,
 			Topic:           campaigns[i].Topic,
 			Location:        campaigns[i].Location,
+			CompletedDate:   campaigns[i].CompletedAt,   
 		}
 		CampaignPayloads = append(CampaignPayloads, campaignPayload)
 	}

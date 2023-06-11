@@ -1,5 +1,9 @@
 package payloads
 
+import (
+	"time"
+)
+
 type CompletedCampaign struct {
 	CampaignId            *uint64   `json:"campaignId"`
 	CoverImage            *string   `json:"coverImage"`
@@ -10,4 +14,5 @@ type CompletedCampaign struct {
 	CompletedAmount       *int      `json:"completedAmount"`
 	EvidenceCampaignImage []string `json:"evidenceImg"`
 	LetterOfThanks        *string   `json:"letterThank"`
+	CompletedDate         *time.Time `json:"completedDate"`
 }

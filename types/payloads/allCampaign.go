@@ -14,4 +14,5 @@ type AllCampaign struct {
 	CreatedAt         *time.Time    `json:"createdAt"`
 	Topic             *string       `json:"topic"`
 	Location          *string       `json:"location"`
+	CompletedDate     *time.Time    `json:"completedDate"`
 }
