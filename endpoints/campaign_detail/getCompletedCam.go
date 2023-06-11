@@ -30,11 +30,6 @@ func GetCompletedCam(c *fiber.Ctx) error {
         // image = EvidenceCampaignImage
 		EvidenceImgs = append(EvidenceImgs, EvidenceCampaignImage)
 	}
-	if EvidenceImgs == nil {
-		EvidenceImgs = append(EvidenceImgs, "123")
-	}
-
-	print(EvidenceImgs)
 	
 	completedCampaign := &payloads.CompletedCampaign{
 		CampaignId:            campaign.Id,
